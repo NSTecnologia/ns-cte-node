@@ -2,7 +2,7 @@ const nsAPI = require('../commons/nsAPI')
 
 const url = "https://cte.ns.eti.br/util/resendemail"
 
-class body {
+class Body {
     constructor(chCTe, tpAmb, enviaEmailDoc, anexarPDF, anexarEvento, email) {
         this.chCTe = chCTe;
         this.tpAmb = tpAmb;
@@ -13,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, erro }) {
         this.status = status;
         this.motivo = motivo;
@@ -22,8 +22,18 @@ class response {
 }
 
 async function sendPostRequest(conteudo) {
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
-    return responseAPI
+
+    try {
+
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
+        return responseAPI
+
+    }
+
+    catch (error) {
+        gravarLinhaLog("[ERRO_ENVIO_EMAIL]: " + error)
+    }
+
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

@@ -3,7 +3,7 @@ const downloadEvento = require('./downloadEvento')
 
 const url = "https://cte.ns.eti.br/cte/cce/300"
 
-class body {
+class Body {
     constructor(chCTe, tpAmb, dhEvento, nSeqEvento, infCorrecao) {
         this.chCTe = chCTe;
         this.tpAmb = tpAmb;
@@ -13,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retEvento, erros }) {
         this.status = status;
         this.motivo = motivo;
@@ -24,7 +24,7 @@ class response {
 
 async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
 
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+    let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
     let downloadEventoBody = new downloadEvento.body(
         responseAPI.retEvento.chCTe,
@@ -39,4 +39,4 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
     return downloadEventoResponse
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

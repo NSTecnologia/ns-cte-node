@@ -3,7 +3,7 @@ const util = require('../commons/util')
 
 const url = "https://cte.ns.eti.br/cte/get/event/300"
 
-class body {
+class Body {
     constructor(chCTe, tpAmb, tpDown, tpEvento, nSeqEvento) {
         this.chCTe = chCTe;
         this.tpAmb = tpAmb;
@@ -13,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retEvento, erro, xml, pdf, json }) {
         this.status = status;
         this.motivo = motivo;
@@ -27,7 +27,7 @@ class response {
 
 async function sendPostRequest(conteudo, caminhoSalvar) {
 
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+    let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
     var idEvento = ""
 
@@ -68,4 +68,4 @@ async function sendPostRequest(conteudo, caminhoSalvar) {
     return responseAPI
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

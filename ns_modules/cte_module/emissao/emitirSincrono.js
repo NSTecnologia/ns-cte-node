@@ -3,7 +3,7 @@ const download = require('./download')
 const emitir = require('./emitir')
 const configParceiro = require('../../../configParceiro')
 
-class responseSincrono {
+class ResponseSincrono {
     constructor(statusEnvio, statusConsulta, statusDownload, cStat, motivo, xMotivo, nsNRec, chCTe, nProt, xml, json, pdf, erros) {
         this.statusEnvio = statusEnvio;
         this.statusConsulta = statusConsulta;
@@ -23,7 +23,7 @@ class responseSincrono {
 
 async function emitirCTeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
 
-    let respostaSincrona = new responseSincrono();
+    let respostaSincrona = new ResponseSincrono();
 
     let emissaoResponse = await emitir.sendPostRequest(conteudo)
 
@@ -121,4 +121,4 @@ async function emitirCTeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
     return respostaSincrona
 }
 
-module.exports = { responseSincrono, emitirCTeSincrono }
+module.exports = { ResponseSincrono, emitirCTeSincrono }

@@ -2,7 +2,7 @@ const nsAPI = require('../commons/nsAPI')
 
 const url = "https://cte.ns.eti.br/util/conscad"
 
-class body {
+class Body {
     constructor(CNPJCont, UF, IE, CNPJ, CPF) {
         this.CNPJCont = CNPJCont;
         this.UF = UF;
@@ -12,7 +12,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retConsCad, erros }) {
         this.status = status;
         this.motivo = motivo;
@@ -22,8 +22,18 @@ class response {
 }
 
 async function sendPostRequest(conteudo) {
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
-    return responseAPI
+
+    try {
+
+        let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
+        return responseAPI
+
+    }
+
+    catch (error) {
+        gravarLinhaLog("[ERRO_CONSULTA_CONTRIBUINTE]: " + error)
+    }
+
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

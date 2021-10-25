@@ -5,7 +5,7 @@ const util = require("../commons/util")
 
 const url = "https://cte.ns.eti.br/cte/get/300"
 
-class body {
+class Body {
     constructor(chCTe, tpDown, tpAmb, CNPJ) {
         this.chCTe = chCTe;
         this.tpDown = tpDown;
@@ -14,7 +14,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, chCTe, xml, pdf, cteProc, erro }) {
         this.status = status;
         this.motivo = motivo;
@@ -28,23 +28,36 @@ class response {
 
 async function sendPostRequest(body, caminho) {
 
-    let responseAPI = new response(await nsAPI.PostRequest(url, body))
+    try {
 
-    if (responseAPI.json != null) {
-        util.salvarArquivo(caminho, responseAPI.chCTe, "-cteProc.json", responseAPI.json)
+        let responseAPI = new Response(await nsAPI.PostRequest(url, body))
+
+        if (responseAPI.json != null) {
+            util.salvarArquivo(caminho, responseAPI.chCTe, "-cteProc.json", responseAPI.json)
+        }
+
+        if (responseAPI.pdf != null) {
+            let data = responseAPI.pdf;
+            let buff = Buffer.from(data, 'base64');
+            util.salvarArquivo(caminho, responseAPI.chCTe, "-cteProc.pdf", buff)
+        }
+
+        if (responseAPI.xml != null) {
+            util.salvarArquivo(caminho, responseAPI.chCTe, "-cteProc.xml", responseAPI.xml)
+        }
+
+        return responseAPI
+
+    } 
+    
+    catch (error) {
+        util.gravarLinhaLog("[ERRO_DOWNLOAD]: " + error)
+        return error
     }
 
-    if (responseAPI.pdf != null) {
-        let data = responseAPI.pdf;
-        let buff = Buffer.from(data, 'base64');
-        util.salvarArquivo(caminho, responseAPI.chCTe, "-cteProc.pdf", buff)
-    }
 
-    if (responseAPI.xml != null) {
-        util.salvarArquivo(caminho, responseAPI.chCTe, "-cteProc.xml", responseAPI.xml)
-    }
 
-    return responseAPI
+
 }
 
 module.exports = { body, sendPostRequest }

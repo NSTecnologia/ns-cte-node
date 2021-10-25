@@ -15,30 +15,33 @@ function gravarLinhaLog(registro) {
     let logTime = new Date()
     logTime = logTime.toLocaleTimeString() + ":" + logTime.getMilliseconds()
 
-    var caminhoLog = "../../../logs"
+    var caminhoLog = "./logs"
 
     var fileName = new Date().toISOString().slice(0, 10).replace("-", "").replace("-", "")
 
     try {
 
         if (!fs.existsSync(caminhoLog)) {
+
             try {
                 salvarArquivo(caminhoLog, fileName, ".log", logTime + " " + registro + "\r\n")
             }
+
             catch (error) {
-                console.log(error)
+                console.log("ERRO_GERAR_ARQUIVO_LOG: " + error)
             }
         }
 
         else {
+
             fs.appendFile(path.join(caminhoLog, fileName + ".log"), logTime + " " + registro + "\r\n", function (err) {
-                if (err) {console.log(err)}
+                if (err) { console.log("ERRO_GERAR_DIRETORIO_LOGS: " + err) }
             })
         }
     }
 
     catch (err) {
-        console.log(err);
+        console.log("ERRO_GERAR_DIRETORIO_LOG: " + error)
     }
 }
 
@@ -47,20 +50,21 @@ async function salvarArquivo(caminho, nomeArquivo, extensao, conteudo) {
     var caminhoSalvar = path.join(caminho, nomeArquivo + extensao)
 
     try {
-        if (!fs.existsSync(caminho)){fs.mkdirSync(caminho)}
+        if (!fs.existsSync(caminho)) { fs.mkdirSync(caminho) }
     }
 
     catch (err) {
-        console.log(err);
+        console.log("ERRO_CRIAR_DIRETORIO: " + err);
     }
 
     fs.writeFile(caminhoSalvar, conteudo, function (err) {
         if (err) throw err;
+        console.log("ERRO_SALVAR_ARQUIVO: " + err);
     });
 
 }
 
-function gerarHashCompEntrega(chave, imagem){
+function gerarHashCompEntrega(chave, imagem) {
 
     var base64Imagem = fs.readFileSync(imagem, { encoding: 'base64' });
 

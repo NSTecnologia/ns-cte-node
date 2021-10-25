@@ -1,10 +1,9 @@
 const nsAPI = require('../commons/nsAPI')
 const downloadEvento = require('./downloadEvento')
-const util = require('../commons/util')
 
 const url = "https://cte.ns.eti.br/cte/compentregacanc"
 
-class body {
+class Body {
     constructor(chCTe, tpAmb, dhEvento, nProt, nProtCE) {
         this.chCTe = chCTe;
         this.tpAmb = tpAmb;
@@ -14,7 +13,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retEvento, xml, json, pdf, erros }) {
         this.status = status;
         this.motivo = motivo;
@@ -28,13 +27,13 @@ class response {
 
 async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
 
-    let responseAPI = new response(await nsAPI.PostRequest(url, conteudo))
+    let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
     if (responseAPI.status == 200) {
 
         if (responseAPI.retEvento.cStat == 135) {
 
-            let downloadEventoBody = new downloadEvento.body(
+            let downloadEventoBody = new downloadEvento.Body(
                 responseAPI.retEvento.chCTe,
                 conteudo.tpAmb,
                 tpDown,
@@ -51,4 +50,4 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
     return responseAPI
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }
