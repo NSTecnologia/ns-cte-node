@@ -1,7 +1,7 @@
 const nsAPI = require('../commons/nsAPI')
 const url = "https://cte.ns.eti.br/cte/issueStatus/300"
 
-class body {
+class Body {
     constructor(CNPJ, nsNRec, tpAmb) {
         this.CNPJ = CNPJ;
         this.nsNRec = nsNRec;
@@ -9,7 +9,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, chCTe, cStat, xMotivo, xml, nProt, dhRecbto, erro }) {
         this.status = status;
         this.motivo = motivo;
@@ -37,4 +37,4 @@ async function sendPostRequest(body) {
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

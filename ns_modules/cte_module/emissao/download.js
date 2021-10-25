@@ -60,5 +60,5 @@ async function sendPostRequest(body, caminho) {
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }
 

@@ -31,7 +31,7 @@ async function emitirCTeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
 
         respostaSincrona.statusEnvio = emissaoResponse.status
 
-        let statusBody = new statusProcessamento.body(
+        let statusBody = new statusProcessamento.Body(
             configParceiro.CNPJ,
             emissaoResponse.nsNRec,
             tpAmb
@@ -53,7 +53,7 @@ async function emitirCTeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
                 respostaSincrona.chCTe = statusResponse.chCTe
                 respostaSincrona.nProt = statusResponse.nProt
 
-                let downloadBody = new download.body(
+                let downloadBody = new download.Body(
                     statusResponse.chCTe,
                     tpDown,
                     tpAmb
