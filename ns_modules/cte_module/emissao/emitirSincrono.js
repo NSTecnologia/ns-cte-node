@@ -89,7 +89,7 @@ async function emitirCTeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
         }
     }
 
-    else if ((statusEnvio == -4) || (statusEnvio == -2)) {
+    else if ((emissaoResponse.status == -4) || (emissaoResponse.status == -2)) {
 
         respostaSincrona.motivo = emissaoResponse.motivo
 
@@ -102,7 +102,7 @@ async function emitirCTeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
         }
     }
 
-    else if ((statusEnvio == -999) || (statusEnvio == -5)) {
+    else if ((emissaoResponse.status == -999) || (emissaoResponse.status == -5)) {
         respostaSincrona.motivo = emissaoResponse.motivo
     }
 
