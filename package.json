@@ -1,6 +1,6 @@
 {
   "name": "ns-cte-node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Biblioteca em Node.js para emissão de CTe em comunicação com a API da NS Tecnologia",
   "main": "index.js",
   "scripts": {

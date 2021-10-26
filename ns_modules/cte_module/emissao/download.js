@@ -1,6 +1,6 @@
-const nsAPI = require('../commons/nsAPI')
+const nsAPI = require('../../api_module/nsAPI')
 var fs = require('fs');
-const util = require("../commons/util")
+const util = require("../../api_module/util")
 'use strict';
 
 const url = "https://cte.ns.eti.br/cte/get/300"

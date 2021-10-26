@@ -3,7 +3,7 @@ const downloadInut = require("./downloadInutilizacao")
 
 const url = "https://cte.ns.eti.br/cte/inut"
 
-class body {
+class Body {
     constructor(cUF, tpAmb, ano, CNPJ, mod, serie, nCTIni, nCTFin, xJust) {
         this.cUF = cUF;
         this.tpAmb = tpAmb;
@@ -17,7 +17,7 @@ class body {
     }
 }
 
-class response {
+class Response {
     constructor({ status, motivo, retornoInutCTe, erros }) {
         this.status = status;
         this.motivo = motivo;
@@ -48,4 +48,4 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
 
 }
 
-module.exports = { body, sendPostRequest }
+module.exports = { Body, sendPostRequest }

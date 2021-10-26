@@ -1,4 +1,4 @@
-const nsAPI = require('../commons/nsAPI')
+const nsAPI = require('../../api_module/nsAPI')
 const url = "https://cte.ns.eti.br/cte/issueStatus/300"
 
 class Body {

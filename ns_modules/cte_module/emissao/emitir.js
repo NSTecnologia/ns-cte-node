@@ -1,4 +1,5 @@
-const nsAPI = require('../commons/nsAPI')
+const nsAPI = require('../../api_module/nsAPI')
+const util = require('../../api_module/util')
 const url = "https://cte.ns.eti.br/cte/issue"
 
 class Response {
@@ -19,7 +20,7 @@ async function sendPostRequest(conteudo) {
     }
 
     catch (error) {
-        gravarLinhaLog("[ERRO_EMISSAO]: " + error)
+        util.gravarLinhaLog("[ERRO_EMISSAO]: " + error)
         return error
     }
 }
