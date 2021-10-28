@@ -8,7 +8,7 @@ Para implementar esta biblioteca em seu projeto, você pode:
 
        npm install ns-cte-node
 
-2. Realizar o download da biblioteca pelo [GitHub](https://https://github.com/NSTecnologia/ns-cte-node.git) e adicionar a pasta "ns-modules" em seu projeto.
+2. Realizar o download da biblioteca pelo [GitHub](https://github.com/NSTecnologia/ns-cte-node/archive/refs/heads/main.zip) e adicionar a pasta "ns-modules" em seu projeto.
 
 # Exemplos de uso do pacote
 
