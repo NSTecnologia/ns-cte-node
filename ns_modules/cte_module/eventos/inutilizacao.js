@@ -1,4 +1,4 @@
-const nsAPI = require('../commons/nsAPI')
+const nsAPI = require('../../api_module/nsAPI')
 const downloadInut = require("./downloadInutilizacao")
 
 const url = "https://cte.ns.eti.br/cte/inut"

@@ -1,4 +1,4 @@
-const nsAPI = require('../commons/nsAPI')
+const nsAPI = require('../../api_module/nsAPI')
 
 const url = "https://cte.ns.eti.br/util/resendemail"
 

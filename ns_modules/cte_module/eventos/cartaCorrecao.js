@@ -1,4 +1,4 @@
-const nsAPI = require('../commons/nsAPI')
+const nsAPI = require('../../api_module/nsAPI')
 const downloadEvento = require('./downloadEvento')
 
 const url = "https://cte.ns.eti.br/cte/cce/300"
@@ -26,7 +26,7 @@ async function sendPostRequest(conteudo, tpDown, caminhoSalvar) {
 
     let responseAPI = new Response(await nsAPI.PostRequest(url, conteudo))
 
-    let downloadEventoBody = new downloadEvento.body(
+    let downloadEventoBody = new downloadEvento.Body(
         responseAPI.retEvento.chCTe,
         conteudo.tpAmb,
         tpDown,
