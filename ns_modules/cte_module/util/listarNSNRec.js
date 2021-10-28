@@ -2,8 +2,8 @@ const nsAPI = require('../commons/nsAPI')
 const url = "https://cte.ns.eti.br/util/list/nsnrecs"
 
 class Body {
-    constructor(chNFe) {
-        this.chNFe = chNFe;
+    constructor(chCTe) {
+        this.chCTe = chCTe;
     }
 }
 

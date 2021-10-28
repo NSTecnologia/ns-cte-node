@@ -3,9 +3,9 @@ const nsAPI = require('../commons/nsAPI')
 const url = "https://cte.ns.eti.br/cte/stats/300"
 
 class Body {
-    constructor(licencaCnpj, chNFe, tpAmb, versao) {
+    constructor(licencaCnpj, chCTe, tpAmb, versao) {
         this.licencaCnpj = licencaCnpj;
-        this.chNFe = chNFe;
+        this.chCTe = chCTe;
         this.tpAmb = tpAmb;
         this.versao = versao;
     }
