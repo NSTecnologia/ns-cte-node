@@ -4,7 +4,7 @@ const util = require('./util')
 
 const header = {
     "Content-Type": "application/json",
-    "X-AUTH-TOKEN": configParceiro.token
+    "X-AUTH-TOKEN": configParceiro.token //Ou pode passar o token direto aqui deixando ele fixo;
 }
 
 async function PostRequest(url, body) {

@@ -20,23 +20,28 @@ class ResponseSincrono {
         this.erros = erros;
     }
 }
-
-async function emitirCTeSincrono(conteudo, tpAmb, tpDown, caminhoSalvar) {
+//Se for usar o config parceiro passar o parametro CNPJLicenca vazio "";
+async function emitirCTeSincrono(conteudo, tpAmb, tpDown, CNPJLicenca, caminhoSalvar) {
 
     let respostaSincrona = new ResponseSincrono();
-
     let emissaoResponse = await emitir.sendPostRequest(conteudo)
+
+//Validação para receber o CNPJ do parametro ou se for vazio vai pegar do configParceiro.CNPJ;
+    if (CNPJLicenca == ""){
+        CNPJLic = configParceiro.CNPJ
+    }
+    else{
+        CNPJLic = CNPJLicenca
+    }
 
     if ((emissaoResponse.status == 200) || (emissaoResponse.status == -6 || (emissaoResponse.status == -7))) {
 
         respostaSincrona.statusEnvio = emissaoResponse.status
-
         let statusBody = new statusProcessamento.Body(
-            configParceiro.CNPJ,
+            CNPJLic,
             emissaoResponse.nsNRec,
             tpAmb
         )
-
         let statusResponse = await statusProcessamento.sendPostRequest(statusBody)
 
         respostaSincrona.statusConsulta = statusResponse.status
